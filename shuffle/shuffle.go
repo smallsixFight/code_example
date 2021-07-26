@@ -7,8 +7,11 @@ import (
 )
 
 func durstenfeld(src []int) []int {
-	log.Println("start", time.Now().UnixNano())
-	defer log.Println("end", time.Now().UnixNano())
+	now := time.Now().UnixNano()
+	log.Println("start", now)
+	defer func() {
+		log.Println("duration", time.Now().UnixNano()-now)
+	}()
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 	for i := len(src); i > 0; i-- {
 		idx := r.Intn(i)
@@ -18,8 +21,11 @@ func durstenfeld(src []int) []int {
 }
 
 func fisherYatesWithSlice(src []int) []int {
-	log.Println("start", time.Now().UnixNano())
-	defer log.Println("end", time.Now().UnixNano())
+	now := time.Now().UnixNano()
+	log.Println("start", now)
+	defer func() {
+		log.Println("duration", time.Now().UnixNano()-now)
+	}()
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 	res := make([]int, 0, len(src))
 	for len(src) > 0 {
@@ -32,8 +38,11 @@ func fisherYatesWithSlice(src []int) []int {
 }
 
 func fisherYates(src []int) []int {
-	log.Println("start", time.Now().UnixNano())
-	defer log.Println("end", time.Now().UnixNano())
+	now := time.Now().UnixNano()
+	log.Println("start", now)
+	defer func() {
+		log.Println("duration", time.Now().UnixNano()-now)
+	}()
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 	res := make([]int, 0, len(src))
 	for len(src) > 0 {
@@ -53,16 +62,20 @@ func fisherYates(src []int) []int {
 }
 
 func main() {
+	log.Println("Fisher-Yates shuffle:")
+	fisherYates(getArr())
+	log.Println("==================================================")
+	log.Println("Fisher-Yates shuffle with slice:")
+	fisherYatesWithSlice(getArr())
+	log.Println("==================================================")
+	log.Println("Durstenfeld shuffle:")
+	durstenfeld(getArr())
+}
+
+func getArr() []int {
 	arr := make([]int, 100000)
 	for i := 0; i < len(arr); i++ {
 		arr[i] = i + 1
 	}
-	log.Println("Fisher-Yates shuffle:")
-	fisherYates(arr)
-	log.Println("==================================================")
-	log.Println("Fisher-Yates shuffle with slice:")
-	fisherYatesWithSlice(arr)
-	log.Println("==================================================")
-	log.Println("Durstenfeld shuffle:")
-	durstenfeld(arr)
+	return arr
 }
