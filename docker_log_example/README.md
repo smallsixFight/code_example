@@ -72,8 +72,8 @@ docker run -d --name example example
 
 ```json
 {
-"log-driver":"json-file",
-"log-opts": { "max-size": "1m", "max-file": "5" }
+  "log-driver":"json-file",
+  "log-opts": { "max-size": "1m", "max-file": "5" }
 }
 ```
 
