@@ -81,4 +81,4 @@ docker run -d --name example example
 
 ## 示例代码和程序
 
-[example in Github]([https://github.com/smallsixFight/code_example/tree/main/docker_log_example](https://github.com/smallsixFight/code_example/tree/main/docker_log_example))
+[example in Github](https://github.com/smallsixFight/code_example/tree/main/docker_log_example)
